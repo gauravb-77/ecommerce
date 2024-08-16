@@ -22,6 +22,8 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+        <link rel="icon" type="image/x-icon" href="{% static 'myapp/favicon.ico' %}">
+
 
 
         <!-- JavaScript -->
@@ -95,7 +97,7 @@
 
                         <li>
                             
-                            <a class="dropdown-item" href="/"> {{ category | title }} </a>
+                            <a class="dropdown-item" href="{{ category.get_absolute_url }}"> {{ category.name | title }} </a>
                         
                         </li>
 
@@ -136,7 +138,7 @@
 
                 <li class="nav-item">
 
-                    <a type="button" role="button" href="/" class="btn btn-outline-secondary"> 
+                    <a type="button" role="button" href="{% url 'cart-summary' %}" class="btn btn-outline-secondary"> 
                     
 
 
