@@ -40,15 +40,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # Django app
-
-    'store.apps.StoreConfig',
-
-    # Django app
+    'store.apps.StoreConfig', # Django app
     
-    'cart.apps.CartConfig',
+    'cart.apps.CartConfig', # Django app
+
+    'account.apps.AccountConfig', # Django app
+
+    'payment.apps.PaymentConfig', # Django app
+
+    'mathfilters',
+
+    'crispy_forms', # Crispy forms
     
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -75,6 +81,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
 
                 'store.views.categories', # Updated
+                'cart.context_processors.cart',
                 
             ],
         },
@@ -141,3 +148,13 @@ MEDIA_ROOT = BASE_DIR / 'static/media'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Email configuration settings
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_USE_TLS = 'True'
+
+EMAIL_HOST_USER = 'bopardikargaurav@gmail.com' # Enter your email address # The host email that sends password reset emails
+EMAIL_HOST_PASSWORD = 'llkm mlzz lwtd zejj' # Enter your app password

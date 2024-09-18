@@ -5,16 +5,18 @@ from .models import Category, Product
 
 def store(request):
 
-    all_products = Product.objects.all()
+    search_query = request.GET.get('q', '')
 
-    context = {'all_products': all_products}
+    all_products = Product.objects.filter(title__icontains=search_query).order_by('title')
+
+    context = {'all_products': all_products, 'search_query': search_query}
 
     return render(request, 'store/store.html', context)
 
 
 def categories(request):
 
-    all_categories = Category.objects.all()
+    all_categories = Category.objects.all().order_by('name')
 
     return {'all_categories': all_categories}
 
@@ -23,7 +25,7 @@ def list_category(request, category_slug):
 
     category = get_object_or_404(Category, slug=category_slug)
 
-    products = Product.objects.filter(category=category)
+    products = Product.objects.filter(category=category).order_by('title')
 
     context = {'category': category, 'products': products}
 
@@ -37,3 +39,4 @@ def product_info(request, product_slug):
     context = {'product': product}
 
     return render(request, 'store/product-info.html', context)
+

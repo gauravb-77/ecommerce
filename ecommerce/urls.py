@@ -20,6 +20,14 @@ urlpatterns = [
     # Cart app
 
     path('cart/', include('cart.urls')),
+
+    # Account app
+
+    path('account/', include('account.urls')),
+
+    # Payment app
+
+    path('payment/', include('payment.urls')),
     
 ]
 

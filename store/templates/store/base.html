@@ -18,11 +18,13 @@
 
         <!-- CSS -->
         
-        <link rel="stylesheet" href="https://bootswatch.com/////5/lux/bootstrap.min.css">
+        <link rel="stylesheet" href="https://bootswatch.com/5/flatly/bootstrap.min.css">
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <link rel="icon" type="image/x-icon" href="{% static 'myapp/favicon.ico' %}">
+
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
 
 
@@ -31,7 +33,7 @@
         <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
 
-	<!-- JavaScript Popper -->
+	    <!-- JavaScript Popper -->
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 
@@ -69,7 +71,7 @@
 
         <span class="navbar-toggler-icon"></span>
 
-    </button>
+        </button>
 
     
         <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -109,28 +111,59 @@
 
                 </li>
 
+                <form class="d-flex ms-4" action="{% url 'store' %}" method="get" style="width: 400px;">
+
+                    <input class="form-control me-2" type="search" name="q" placeholder="Search products" aria-label="Search" style="flex-grow: 1;" value="{{ search_query }}">
+                    
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+
+                </form>
+
             </ul>
 
+
         </div>
+
 
 
         <div class="collapse navbar-collapse text-center" id="navbarNavDropdown">
             
             <ul class="navbar-nav ms-auto">
+                
+                {% if request.user.is_authenticated %}
+                    
+                    <li class="nav-item">
+                
+                        <a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'dashboard' %}"> <i class="fa fa-home" aria-hidden="true"></i> &nbsp; Dashboard </a>
+
+                    </li>
 
 
-                <li class="nav-item">
-            
-                    <a class="btn btn-alert navbar-btn text-white" type="button"  href="/"> Register </a>
+                    <li class="nav-item">
 
-                </li>
+                        <a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'user-logout' %}"> <i class="fa fa-sign-out" aria-hidden="true"></i> &nbsp; Logout </a>
+
+                    </li>
+
+                {% else %}
+
+                    <li class="nav-item">
+                
+                        <a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'register' %}"> <i class="fa fa-user-plus" aria-hidden="true"></i> &nbsp; Register </a>
+
+                    </li>
 
 
-                <li class="nav-item">
+                    <li class="nav-item">
 
-                    <a class="btn btn-alert navbar-btn text-white" type="button"  href="/"> Login </a>
+                        <a class="btn btn-alert navbar-btn text-white" type="button"  href="{% url 'my-login' %}"> <i class="fa fa-sign-in" aria-hidden="true"></i> &nbsp; Login </a>
 
-                </li>
+                    </li>
+
+                {% endif %}
+
+
+                
 
 
                 &nbsp; &nbsp; &nbsp;
@@ -143,6 +176,26 @@
 
 
                         <i class="fa fa-shopping-cart" aria-hidden="true"> </i>
+
+                        &nbsp;
+
+                        <div id="cart-qty" class="d-inline-flex">
+
+                            {% with qty_amount=cart|length %}
+                                
+                                {% if qty_amount > 0 %}
+
+                                    {{ qty_amount }}
+
+                                {% else %}
+
+                                    0
+
+                                {% endif %}
+
+                            {% endwith %}
+
+                        </div>
 
 
                     </a>
@@ -159,6 +212,25 @@
 
 
     </nav>
+
+
+    {% for message in messages %}
+        
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+         
+            <h6 id="message-timer" class="alert alert-success text-center"> <i class="fa fa-sign-out" aria-hidden="true"></i> &nbsp; {{ message }} </h6>
+
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+
+            <h6 id="message-timer" class="alert alert-danger text-center"> <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> &nbsp; {{ message }} </h6>
+
+        {% elif message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+
+            <h6 id="message-timer" class="alert alert-info text-center"> <i class="fa fa-check-circle" aria-hidden="true"></i> &nbsp; {{ message }} </h6>
+
+        {% endif %}
+
+    {% endfor %}
 
 
     <body>
@@ -179,6 +251,8 @@
 
 
     </body>
+
+    <script src="{% static 'js/app.js' %}"></script>
 
 
 </html>
