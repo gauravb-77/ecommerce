@@ -157,4 +157,4 @@ EMAIL_PORT = '587'
 EMAIL_USE_TLS = 'True'
 
 EMAIL_HOST_USER = 'bopardikargaurav@gmail.com' # Enter your email address # The host email that sends password reset emails
-EMAIL_HOST_PASSWORD = 'llkm mlzz lwtd zejj' # Enter your app password
+EMAIL_HOST_PASSWORD = '' # Enter your app password
