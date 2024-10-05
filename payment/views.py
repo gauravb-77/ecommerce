@@ -111,7 +111,7 @@ def complete_order(request):
 
         # Email user
 
-        send_mail('Order received', 'Hi ! ' + '\n\n' + 'Thank you for placing your order' + '\n\n' + 'Please see your order below:' + '\n\n' + '\n'.join(all_products) + '\n\n' + 'Total paid: ₹ ' + str(cart.get_total()), from_email=settings.EMAIL_HOST_USER, recipient_list=[email], fail_silently=False)
+        send_mail('Order received', 'Hi ! ' + '\n\n' + 'Thank you for placing your order' + '\n\n' + 'Please see your order below :' + '\n\n' + '\n'.join(all_products) + '\n\n' + 'Total paid: ₹ ' + str(cart.get_total()), from_email=settings.EMAIL_HOST_USER, recipient_list=[email], fail_silently=False)
 
 
         order_success = True
