@@ -15,7 +15,6 @@ This project is a fully functional e-commerce website built using Django. The we
 - **Frontend**: HTML, CSS, JavaScript (Bootstrap)
 - **Database**: SQLite (default), can be configured for PostgreSQL, MySQL, etc.
 - **Payments**: Not yet integrated (support for integration such as Razorpay, PayPal, etc.)
-- **Deployment**: Heroku, Docker (optional)
 
 ## Installation
 
