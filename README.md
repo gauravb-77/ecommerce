@@ -6,7 +6,7 @@ This project is a fully functional e-commerce website built using Django. The we
 - User registration and authentication (sign up, login, logout)
 - Product catalog with categories and search functionality
 - Add products to shopping cart
-- Order processing and checkout with payment integration
+- Order processing and checkout (payment integration can be added)
 - Admin panel for managing products, categories, and orders
 - Responsive design
 
@@ -14,7 +14,7 @@ This project is a fully functional e-commerce website built using Django. The we
 - **Backend**: Django (Python)
 - **Frontend**: HTML, CSS, JavaScript (Bootstrap)
 - **Database**: SQLite (default), can be configured for PostgreSQL, MySQL, etc.
-- **Payments**: Stripe (or other integrations)
+- **Payments**: Not yet integrated (support for integration such as Razorpay, PayPal, etc.)
 - **Deployment**: Heroku, Docker (optional)
 
 ## Installation
